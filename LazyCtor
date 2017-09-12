@@ -1,21 +1,24 @@
 
 
 public class LazyCtor {
-
     // static members
-    private static int K = 0;
-    
+    private static int K=30;
     private static final LazyCtor[] LA = new LazyCtor[K];
-    
-    private static int instanceCounter = 0;
+    private static int instanceCounter=0;
 
+    // static initializer
+    static {
+        for (int i = 0; i < K; i++) {
+            LA[i] = new LazyCtor(i);
+        }
+    }
     // instance variables
     private final int id;
 
     // only constructor is private
     private LazyCtor(final int id) {
         this.id = id;
-        LazyCtor.instanceCounter++;
+        //LazyCtor.instanceCounter++;
     }
 
     public static int getNumOfInstancesAllowed() {
